@@ -103,20 +103,25 @@ pentru a compila în mod automat fișierele cod sursă limbaj de asamblare sau C
 
 ![Image](https://ocw.cs.pub.ro/courses/_media/iocla/laboratoare/stack-in-function-call.png?cache=)
 
+
 ## 1. Tutorial: Folosirea unui buffer în zona de date
 
 Accesați, în linia de comandă, directorul ```1-data-buffer/``` din arhiva de resurse a laboratorului și consultați fișierul ```data_buffer.asm```.
 În acest fișier se găsește un program care populează un buffer cu informații și apoi le afișează.
 
-Consultați cu atenție programul, apoi compilați-l folosind comanda 
+Consultați cu atenție programul, apoi compilați-l folosind comanda:
 
 ```make```
 
-Observați că în urma comenzii de compilare de mai sus au rezultat un fișier obiect și un fișier executabil, prin rularea comenzii 
+Observați că în urma comenzii de compilare de mai sus au rezultat un fișier obiect și un fișier executabil, prin rularea comenzii:
 
 ```ls```
 
-Rulați programul prin intermediul fișierului executabil, adică folosind comanda
+Rulați programul prin intermediul fișierului executabil, adică folosind comanda:
 
 ```./data_buffer```
 
+Observați comportamentul programului în funcție de codul său.
+
+
+### 2. Tutorial: Folosirea unui buffer pe stivă
