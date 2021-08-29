@@ -88,4 +88,7 @@ dar și despre atacuri de tip buffer overflow puteți găsi [aici](https://en.wi
 
 >Pentru mai multe informații despre folosirea utilitarului git, urmați ghidul de la [Git Immersion](https://gitimmersion.com/).
 
-Pentru desfășurarea acestui laborator vom folosi interfața în linia de comandă. 
+Pentru desfășurarea acestui laborator vom folosi interfața în linia de comandă.
+
+Pe parcursul laboratorului, în linia de comandă, vom folosi: 
+  - asamblorul ```nasm```
