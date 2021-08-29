@@ -56,3 +56,22 @@ Acest eveniment poate conduce la comportament nedefinit al programului (*undefin
 Scopul unui atacator este acela de a prelua controlul unui sistem prin obținerea accesului la un shell din care să poată rula comenzi.
 Acest lucru se poate realiza prin suprascrierea adresei de retur, folosind un apel de sistem prin intermediul căruia se poate deschide
 un shell pe sistemul pe care executabilul rulează (mai multe detalii la cursul de SO).
+
+### Cum ne protejăm de atacuri de tip buffer overflow?
+
+Există multe modalități de a proteja un executabil de acest tip de atacuri. Pe majoritatea le veți studia în amănunt la cursul de SO anul viitor.
+O bună practică împotriva acestui tip de atac este de a evita folosirea unor funcții nesigure, precum cele prezentate mai sus.
+Mai multe detalii despre bune practici împotriva atacurilor de tip buffer overflow puteți găsi [aici](https://security.web.cern.ch/recommendations/en/codetools/c.shtml).
+
+De multe ori, bunele practici se dovedesc a fi insuficiente în „lupta” împotriva atacatorilor,
+motiv pentru care au fost inventate mai multe mecanisme de protecție a executabilelor prin manipularea codului
+și a poziției acestuia în cadrul executabilului (*Position Independent Code* - [PIC](https://en.wikipedia.org/wiki/Position-independent_code)),
+prin randomizarea adreselor (*Address Space Layout Randomization* - [ASLR](https://en.wikipedia.org/wiki/Address_space_layout_randomization))
+sau prin introducerea unor verificări suplimentare în cod pentru a detecta eventuale atacuri.
+Aceste verificări se realizează prin introducerea unor valori speciale, numite **canary** pe stivă,
+între buffer și adresa de retur a funcției. Aceste valori sunt generate și plasate în cadrul executabilului de către compilator
+și diferă la fiecare rularea executabilului. În momentul în care un atacator vrea să suprascrie adresa de retur se va suprascrie
+și valoarea canary și înainte de a se părăsi apelul funcției curente se va verifica dacă acea valoare a fost modificată sau nu.
+Dacă a fost modificată înseamnă că a avut loc un buffer overflow și execuția programului va fi întreruptă.
+Acest mecanism se numește **Stack Smashing Protection** sau **Stack Guard**. Mai multe detalii despre Stack Guard,
+dar și despre atacuri de tip buffer overflow puteți găsi [aici](https://en.wikipedia.org/wiki/Buffer_overflow). 
