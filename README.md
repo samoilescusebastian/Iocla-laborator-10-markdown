@@ -175,4 +175,41 @@ Folosiți-vă de modificarea buffer-ului și de registrul ```ebx``` în care am 
 > ```Assembly
 > mov byte [ebx+TODO], TODO
 > ```
+> Realizați acest lucru după secvența de inițializare a buffer-ului (după instrucțiunea ```jl fill_byte```).
 
+La o rezolvare corectă a acestui exercițiu, programul va afișa valoarea ```0xDEADBEEF``` pentru variabila locală.
+
+
+## 5. Tutorial: Citirea de date de la intrarea standard
+
+Accesați directorul ```5-6-read-stdin/``` din arhiva de resurse a laboratorului și consultați fișierul ```read_stdin.asm```.
+În acest fișier se găsește un program care folosește apelul ```gets``` ca să citească informații de la intrarea standard
+într-un buffer de pe stivă. La fel ca în cazul precedent am alocat o variabilă locală pe 4 octeți imediat după buffer-ul de pe stivă.
+
+Consultați cu atenție programul, apoi compilați-l folosind comanda:
+
+```make```
+
+apoi rulați-l folosind comanda:
+
+```./read_stdin```
+
+Observați comportamentul programului funcție de input-ul primit.
+
+## 6. Buffer overflow cu date de la intrarea standard
+
+Funcția [gets](https://man7.org/linux/man-pages/man3/gets.3.html) este o funcție care este practic interzisă în programele C
+din cauza vulnerabilității mari a acesteia: nu verifică limitele buffer-ului în care se face citirea,
+putând fi ușor folosită pentru buffer overflow.
+
+Pentru aceasta transmiteți șirul de intrare corespunzător pentru ca valoarea afișată pentru variabila locală să nu mai fie
+```0xCAFEBABE```, ci să fie ```0x574F4C46``` (valorile ASCII în hexazecimal pentru ```FLOW```). 
+
+> **IMPORTANT**
+> Nu modificați codul în limbaj de asamblare.
+> Transmiteți șirul de intrare în format corespunzător la intrarea standard pentru a genera un buffer overflow și pentru a obține rezultatul cerut. 
+
+> **WARNING**
+> Nu scrieți șirul ```"574F4C46"```. Acesta e un șir care ocupă ```8``` octeți.
+> Trebuie să scrieți reprezentarea ASCII a numărului ```0x574F4C46``` adică ```FLOW```: 
+> ```0x57``` este ```W```, ```0x4F``` este ```O```, ```0x4C``` este ```L``` iar ```0x46 ``` este ```F```. 
