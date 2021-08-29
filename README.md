@@ -210,8 +210,10 @@ Pentru aceasta transmiteți șirul de intrare corespunzător pentru ca valoarea 
 > Transmiteți șirul de intrare în format corespunzător la intrarea standard pentru a genera un buffer overflow și pentru a obține rezultatul cerut. 
 
 > **WARNING**
->
 > Nu scrieți șirul ```"574F4C46"```. Acesta e un șir care ocupă ```8``` octeți.
->
 > Trebuie să scrieți reprezentarea ASCII a numărului ```0x574F4C46``` adică ```FLOW```: 
-> ```0x57``` este ```W```, ```0x4F``` este ```O```, ```0x4C``` este ```L``` iar ```0x46 ``` este ```F```. 
+> ```0x57``` este ```W```, ```0x4F``` este ```O```, ```0x4C``` este ```L``` iar ```0x46 ``` este ```F```.
+
+> **TIP**
+> x86 este o arhitectură little endian. Adică șirul ```"FLOW"```, având corespondența caracter-cod ASCII
+> ```F```: ```0x46```, ```L```: ```0x4C```, ```O```: ```0x4F```, ```W```: ```0x57``` va fi stocat în memorie pe 4 octeți ca 0x574F4C46.
