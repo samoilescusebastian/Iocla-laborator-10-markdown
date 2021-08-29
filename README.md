@@ -15,12 +15,12 @@ Obiective:
 
 Un buffer este o zonă de memorie definită printr-o adresă de start și o dimensiune. Fie N dimensiunea bufferului,
 adică numărul de elemente. Dimensiunea totală a bufferului este N x dimensiunea unui element.
-Un șir de caractere (string) este un caz particular de buffer.
+Un șir de caractere (*string*) este un caz particular de buffer.
 
 ### Ce este un buffer overflow?
 
 Un buffer overflow este un eveniment care se produce atunci când în parcurgerea unui buffer se depășește limita superioară,
-adică poziția ultimului element (v[N - 1]). Un buffer overflow este un caz particular de index out of bounds,
+adică poziția ultimului element (v[N - 1]). Un buffer overflow este un caz particular de *index out of bounds*,
 în care vectorul poate fi accesat folosind și indecși negativi. Multe funcții din C nu verifică dimensiunea bufferelor cu care lucrează,
 acestea cauzând erori de tip buffer overflow atunci când sunt apelate. Câteva exemple de astfel de funcții sunt:
   - [memcpy](http://www.cplusplus.com/reference/cstring/memcpy/)
@@ -32,4 +32,8 @@ Un exemplu clasic de buffer overflow este dat de următorul cod:
 char buffer[32];
 fgets(buffer, 64, stdin);
 ```
- În urma execuției acestui cod vom obține un buffer overflow care ar putea conduce chiar la o eroare de tip Segmentation Fault, însă acest lucru nu este garantat. Totul depinde de poziția bufferului pe stivă și de ceea ce se va suprascrie prin cei 32 de octeți ce depășesc dimensiunea bufferului. Mai multe detalii despre ceea ce se va suprascrie, dar și modalitatea prin care se va face acest lucru veți descoperi în timpul rezolvării exercițiilor.
+ În urma execuției acestui cod vom obține un buffer overflow care ar putea conduce chiar la o eroare de tip *Segmentation Fault*, însă acest lucru nu este garantat. Totul depinde de poziția bufferului pe stivă și de ceea ce se va suprascrie prin cei 32 de octeți ce depășesc dimensiunea bufferului. Mai multe detalii despre ceea ce se va suprascrie, dar și modalitatea prin care se va face acest lucru veți descoperi în timpul rezolvării exercițiilor.
+
+## Atacuri de tip buffer overflow
+
+  ### Cum este folosit buffer overflow?
