@@ -24,3 +24,6 @@ adică poziția ultimului element (v[N - 1]). Un buffer overflow este un caz par
 în care vectorul poate fi accesat folosind și indecși negativi. Multe funcții din C nu verifică dimensiunea bufferelor cu care lucrează,
 acestea cauzând erori de tip buffer overflow atunci când sunt apelate. Câteva exemple de astfel de funcții sunt:
   - [memcpy](http://www.cplusplus.com/reference/cstring/memcpy/)
+  - [strcpy](https://www.cplusplus.com/reference/cstring/strcpy/)
+  - [fgets](http://www.cplusplus.com/reference/cstdio/fgets/)
+Un exemplu clasic de buffer overflow este dat de următorul cod: 
