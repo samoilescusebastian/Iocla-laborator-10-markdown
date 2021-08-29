@@ -240,7 +240,7 @@ Pentru aceasta transmiteți șirul de intrare corespunzător pentru ca valoarea 
 Așa cum am precizat mai sus, funcția ```gets``` este interzisă în programele curente.
 În locul acesteia se poate folosi funcția [fgets](https://man7.org/linux/man-pages/man3/fgets.3.html).
 Creați o copie a fișierului cod sursă ```read_stdin.asm``` din subdirectorul ```5-6-read-stdin/``` într-un fișier
-cod sursă ````read_stdin_fgets.asm``` în subdirectorul ```7-read-stdin-fgets/```.
+cod sursă ```read_stdin_fgets.asm``` în subdirectorul ```7-read-stdin-fgets/```.
 În fișierul cod sursă ```read_stdin_fgets.asm``` schimbați apelul funcției ```gets()``` cu apelul funcției ```fgets```.
 
 Pentru apelul ```fgets()``` citiți de la intrarea standard. Ca argument pentru al treilea parametru al ````fgets()```
@@ -254,7 +254,7 @@ Va trebui să îl marcați ca extern folosind, la începutul fișierului în lim
 ```stdin``` este o adresă; pentru a apela ```fgets()``` cu intrarea standard,
 este suficient să transmitem pe stivă valoarea de la adresa ```stdin``, adică folosind construcția:
 
-> ```Assemby
+> ```Assembly
 > push dword [stdin]
 > ```
 
