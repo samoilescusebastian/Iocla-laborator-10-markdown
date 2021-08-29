@@ -26,4 +26,9 @@ acestea cauzând erori de tip buffer overflow atunci când sunt apelate. Câteva
   - [memcpy](http://www.cplusplus.com/reference/cstring/memcpy/)
   - [strcpy](https://www.cplusplus.com/reference/cstring/strcpy/)
   - [fgets](http://www.cplusplus.com/reference/cstdio/fgets/)
-Un exemplu clasic de buffer overflow este dat de următorul cod: 
+
+Un exemplu clasic de buffer overflow este dat de următorul cod:
+```C
+char buffer[32];
+fgets(buffer, 64, stdin);
+```
