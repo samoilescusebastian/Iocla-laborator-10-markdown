@@ -211,5 +211,6 @@ Pentru aceasta transmiteți șirul de intrare corespunzător pentru ca valoarea 
 
 > **WARNING**
 > Nu scrieți șirul ```"574F4C46"```. Acesta e un șir care ocupă ```8``` octeți.
+>
 > Trebuie să scrieți reprezentarea ASCII a numărului ```0x574F4C46``` adică ```FLOW```: 
 > ```0x57``` este ```W```, ```0x4F``` este ```O```, ```0x4C``` este ```L``` iar ```0x46 ``` este ```F```. 
