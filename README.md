@@ -9,4 +9,10 @@ Obiective:
   - Exemple de atacuri de tip buffer overflow
   - Prezentarea unor modalități de securizare a programelor pentru evitarea atacurilor de tip buffer overflow
 
-<pre> ##   Buffer. Buffer overflow </pre>
+## Buffer. Buffer overflow
+
+### Ce este un buffer?
+
+Un buffer este o zonă de memorie definită printr-o adresă de start și o dimensiune. Fie N dimensiunea bufferului,
+adică numărul de elemente. Dimensiunea totală a bufferului este N x dimensiunea unui element.
+Un șir de caractere (string) este un caz particular de buffer. 
