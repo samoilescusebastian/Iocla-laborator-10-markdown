@@ -317,6 +317,7 @@ cu care să declanșați overflow-ul și faceți în așa fel încât să fie af
 > Cu aceste informații puteți crea șirul pe care să îl transmiteți ca payload către intrarea standard a programului.
 
 > **NOTE**
+> Dacă doriți să recompilați fișierele rulați:
 > ```bash
 > make clean && make
 > ```
@@ -328,3 +329,44 @@ cu care să declanșați overflow-ul și faceți în așa fel încât să fie af
 > ```bash
 > ./do_overflow < payload
 > ```
+
+
+## 9. Bonus: Stack canary
+
+Pornind de la resursele exercițiului anterior din directorul ```8-9-c-buffer-overflow``` inspectați fișierul ```Makefile```.
+
+> ```bash
+> cat Makefile
+> ```
+
+Analizați atent opțiunile de compilare. Ce observați? 
+
+Așa cum ați observat în cadrul exercițiului anterior, deși am depășit dimensiunea buffer-ului
+și am suprascris o altă variabilă din program, acesta și-a încheiat execuția în mod normal.
+Acest lucru este nedorit atunci când lucrăm cu buffere, deoarece sunt o sursă de la care poate porni foarte ușor un atac.
+Folosind ```objdump``` inspectați funcția ```main``` a executabilului.
+
+> **TIP**
+> Pentru a inspecta sursa, folosiți următoarea comandă:
+> ```Assembly
+> objdump -M intel -d do_overflow
+> ```
+
+Acum intrați în fișierul ```Makefile``` și modificați parametrii ```CFLAGS``` înlocuind ```-fno-stack-protector``` cu ```-fstack-protector```.
+Recompilați programul și rulați-l. Ce observați?
+
+> **NOTE**
+> Prin opțiunea sau flag-ul ```-fstack-protector``` i-am cerut compilatorului să activeze opțiunea de
+> *Stack Smashing Protection* pentru executabilul nostru. Astfel, orice atac de tip buffer overflow
+> va fi detectat în cod și execuția programului se va încheia cu eroare.
+
+Inspectați din nou executabilul recompilat cu noul flag folosind ```objdump```. Ce s-a schimbat?
+
+> **NOTE**
+> Compilatorul a introdus pe stivă o valoare generată aleator, numită **canary**,
+> pe care o verifică înainte de a părăsi execuția funcției curente. Prin buffer overflow,
+> aceasta a fost suprascrisă odată cu depășirea dimensiunii buffer-ului,
+> ceea ce a determinat o neconcordanță între valoarea inițială a canary-ului și cea de la finalul execuției funcției. 
+
+
+## 10. Bonus: Buffer overflow pentru binar
