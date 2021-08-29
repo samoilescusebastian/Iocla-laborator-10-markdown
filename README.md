@@ -8,3 +8,5 @@ Obiective:
   - Prezentarea conceptelor de buffer și buffer overflow
   - Exemple de atacuri de tip buffer overflow
   - Prezentarea unor modalități de securizare a programelor pentru evitarea atacurilor de tip buffer overflow
+
+<pre> ##   Buffer. Buffer overflow </pre>
