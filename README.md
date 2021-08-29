@@ -243,7 +243,7 @@ Creați o copie a fișierului cod sursă ```read_stdin.asm``` din subdirectorul 
 cod sursă ```read_stdin_fgets.asm``` în subdirectorul ```7-read-stdin-fgets/```.
 În fișierul cod sursă ```read_stdin_fgets.asm``` schimbați apelul funcției ```gets()``` cu apelul funcției ```fgets```.
 
-Pentru apelul ```fgets()``` citiți de la intrarea standard. Ca argument pentru al treilea parametru al ````fgets()```
+Pentru apelul ```fgets()``` citiți de la intrarea standard. Ca argument pentru al treilea parametru al ```fgets()```
 (de tipul ```FILE *```) veți folosi intrarea standard. Pentru a specifica intrarea standard folosiți stream-ul [stdin](https://linux.die.net/man/3/stdin).
 Va trebui să îl marcați ca extern folosind, la începutul fișierului în limbaj de asamblare, construcția:
 
@@ -262,11 +262,11 @@ este suficient să transmitem pe stivă valoarea de la adresa ```stdin``, adică
 > Urmăriți pagina de manual a funcției [fgets](https://man7.org/linux/man-pages/man3/fgets.3.html) pentru a afla ce parametri primește.
 
 > **TIP**
-> Pentru apelul funcției ```fgets()``` folosiți construcția
+> Pentru apelul funcției ```fgets()``` folosiți construcția:
 > ```Assembly
 > call fgets
 > ```
-> De asemenea, marcați simbolul ca fiind extern folosind construcția 
+> De asemenea, marcați simbolul ca fiind extern folosind construcția:
 > ```Assembly
 > extern fgets
 > ```
@@ -274,6 +274,7 @@ este suficient să transmitem pe stivă valoarea de la adresa ```stdin``, adică
 > **TIP**
 > Întrucât funcția ```fgets()``` are 3 parametri (care ocupă ```3×4=12``` octeți) va trebui ca după apelul funcției,
 > în restaurarea stivei, să folosiți ```add esp, 12 ``` (în loc de ```add esp, 4``` ca în cazul programul de mai sus care folosea ```gets()```).
+
 
 Să păstrați posibilitatea unui buffer overflow și să demonstrați acest lucru prin afișarea valorii ```0x574F4C46```
 pentru variabila locală. Adică să folosiți ca al doilea argument pentru ```fgets()``` (dimensiunea)
@@ -289,4 +290,41 @@ o valoare suficient de mare cât să permită realizarea unui buffer overflow.
 
 > **IMPORTANT**
 >  Nu modificați codul în limbaj de asamblare. Transmiteți șirul de intrare în format corespunzător la intrarea standard
-> pentru a genera un buffer overflow și pentru a obține rezultatul cerut. 
+> pentru a genera un buffer overflow și pentru a obține rezultatul cerut.
+
+
+## 8. Buffer overflow pentru program scris în cod C
+
+De cele mai multe ori vom identifica vulnerabilități de tip buffer overflow în programe scrise în C.
+Acolo trebuie să vedem ce buffere sunt și care este distanța de la buffer la variabila dorită pentru a putea face suprascrierea. 
+
+> **IMPORTANT**
+> Este important de avut în vedere că distanța între un buffer și o altă variabilă în C poate nu corespunde cu cea "din teren";
+> compilatorul poate face actualizări, reordonări, poate lăsa spații libere între variabile etc.
+
+Pentru exercițiul curent, accesați directorul ```8-c-buffer-overflow/``` din arhiva de resurse a laboratorului
+și observați codul sursă aferent în C. Pentru cazul în care doriți să nu mai compilați voi codul aveți în arhivă
+și fișierul limbaj de asamblare echivalent și fișierul în cod obiect și fișierul executabil.
+
+Descoperiți diferența între adresa buffer-ului și adresa variabilei, creați un fișier de intrare (numit și ```payload```)
+cu care să declanșați overflow-ul și faceți în așa fel încât să fie afișat mesajul *Full of win!*.
+
+> **TIP** 
+> Ca să vedeți realitatea "din teren", adică să aflați care este diferența dintre buffer și variabila pe care dorim să o suprascriem,
+> consultați fișierul în limbaj de asamblare echivalent (```do_overflow.asm```), obținut prin asamblarea codului C.
+> În acest fișier puteți afla adresa relativă a buffer-ului față de ```ebp``` și a variabilei față de ```ebp```;
+> urmăriți secvența cuprinsă între liniile ```32``` și ```41```; aveți o mapare între numele variabilei și offset-ul relativ față de ```ebp```.
+> Cu aceste informații puteți crea șirul pe care să îl transmiteți ca payload către intrarea standard a programului.
+
+> **NOTE**
+> ```bash
+> make clean && make
+> ```
+
+> **TIP**
+> La fel ca mai sus, ca să transmiteți șirul de intrare pentru program, e recomandat să-l scrieți într-un fișier
+> și apoi să redirectați acel fișier către comanda aferentă > programului.
+> Redirectarea fișierului payload către program se face folosind o comandă precum:
+> ```bash
+> ./do_overflow < payload
+> ```
