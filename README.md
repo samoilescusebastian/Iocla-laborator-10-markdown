@@ -146,6 +146,7 @@ Ce este relevant acum este să știm că această variabilă este în memorie **
 
 Care este diferenta intre cele 2 programe inspectate pana acum?
 
+
 ## 3. Citirea de date dincolo de dimensiunea buffer-ului
 
 Acum că am văzut cum arată buffer-ul în memorie și unde este plasată variabila,
@@ -160,3 +161,18 @@ Este un caz de buffer overflow de citire, cu obiectiv de **information leak**: a
 
 Afișați și alte informații dincolo chiar de variabila locală.
 Ce informație vine pe stivă după variabila locală (următorii 4 octeți)? Dar următorii 4 octeți după?
+
+
+## 4. Scrierea de date dincolo de dimensiunea buffer-ului
+
+Pe baza experienței de mai sus, realizați modificări pentru ca valoarea variabilei să fie ```0xDEADBEEF```
+(în loc de ```0xCAFEBABE``` cum este la început) fără a modifica însă explicit valoarea variabilei.
+Folosiți-vă de modificarea buffer-ului și de registrul ```ebx``` în care am stocat adresa de început a buffer-ului.
+
+> **TIP**
+>  Din nou, nu este ceva complicat. Trebuie să vă folosiți de valoarea ```ebx``` și un offset ca să scrieți valoarea ```0xDEADBEEF``` la acea adresă.
+> Adică folosiți o construcție de forma:
+> ```Assembly
+> mov byte [ebx+TODO], TODO
+> ```
+
