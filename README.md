@@ -370,3 +370,22 @@ Inspectați din nou executabilul recompilat cu noul flag folosind ```objdump```.
 
 
 ## 10. Bonus: Buffer overflow pentru binar
+
+ De multe ori nu avem șansa accesului la codul sursă și vrem să descoperim vulnerabilități în fișiere executabile.
+ În directorul ```10-overflow-in-binary``` din arhiva de resurse a laboratorului, găsiți un fișier executabil.
+ Folosind ```ghidra``` sau ```gdb``` pentru investigație descoperiți cum puteți exploata vulnerabilitatea de tip buffer overflow,
+ pentru ca programul să afișeze mesajul *Great success!*.
+
+ > **IMPORTANT**
+ > Pentru a rula ```ghidra``` pe fișierul executabil ```overflow_in_binary``` trebuie să vă creați un proiect nou în care să importați fișierul executabil.
+ > Ghidra va detecta automat formatul fișierului. Rulați analiza executabilului după care căutați în Symbol Tree după funcția main.
+
+ > **TIP**
+ > Identificați în codul dezasamblat cum se transmite intrarea către program.
+ > Identificați unde este buffer overflow-ul. Identificați condiția de comparație pe care doriți să o declanșați.
+ > Apoi construiți payload-ul corespunzător și transmiteți-l în forma adecvată programului.
+
+
+## Soluții
+
+Soluțiile pentru exerciții sunt disponibile [aici](https://elf.cs.pub.ro/asm/res/laboratoare/lab-10-sol.zip). 
