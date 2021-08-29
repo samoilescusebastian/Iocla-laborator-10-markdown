@@ -233,3 +233,60 @@ Pentru aceasta transmiteți șirul de intrare corespunzător pentru ca valoarea 
 > ```bash
 > ./read_stdin < payload
 > ```
+
+
+## 7. Buffer overflow cu date de la intrarea standard și fgets()
+
+Așa cum am precizat mai sus, funcția ```gets``` este interzisă în programele curente.
+În locul acesteia se poate folosi funcția [fgets](https://man7.org/linux/man-pages/man3/fgets.3.html).
+Creați o copie a fișierului cod sursă ```read_stdin.asm``` din subdirectorul ```5-6-read-stdin/``` într-un fișier
+cod sursă ````read_stdin_fgets.asm``` în subdirectorul ```7-read-stdin-fgets/```.
+În fișierul cod sursă ```read_stdin_fgets.asm``` schimbați apelul funcției ```gets()``` cu apelul funcției ```fgets```.
+
+Pentru apelul ```fgets()``` citiți de la intrarea standard. Ca argument pentru al treilea parametru al ````fgets()```
+(de tipul ```FILE *```) veți folosi intrarea standard. Pentru a specifica intrarea standard folosiți stream-ul [stdin](https://linux.die.net/man/3/stdin).
+Va trebui să îl marcați ca extern folosind, la începutul fișierului în limbaj de asamblare, construcția:
+
+> ```Assembly
+> extern stdin
+> ```
+
+```stdin``` este o adresă; pentru a apela ```fgets()``` cu intrarea standard,
+este suficient să transmitem pe stivă valoarea de la adresa ```stdin``, adică folosind construcția:
+
+> ```Assemby
+> push dword [stdin]
+> ```
+
+> **TIP**
+> Urmăriți pagina de manual a funcției [fgets](https://man7.org/linux/man-pages/man3/fgets.3.html) pentru a afla ce parametri primește.
+
+> **TIP**
+> Pentru apelul funcției ```fgets()``` folosiți construcția
+> ```Assembly
+> call fgets
+> ```
+> De asemenea, marcați simbolul ca fiind extern folosind construcția 
+> ```Assembly
+> extern fgets
+> ```
+
+> **TIP**
+> Întrucât funcția ```fgets()``` are 3 parametri (care ocupă ```3×4=12``` octeți) va trebui ca după apelul funcției,
+> în restaurarea stivei, să folosiți ```add esp, 12 ``` (în loc de ```add esp, 4``` ca în cazul programul de mai sus care folosea ```gets()```).
+
+Să păstrați posibilitatea unui buffer overflow și să demonstrați acest lucru prin afișarea valorii ```0x574F4C46```
+pentru variabila locală. Adică să folosiți ca al doilea argument pentru ```fgets()``` (dimensiunea)
+o valoare suficient de mare cât să permită realizarea unui buffer overflow.
+
+> **TIP**
+> La fel ca mai sus, ca să transmiteți șirul de intrare pentru program, e recomandat să-l scrieți într-un fișier
+> și apoi să redirectați acel fișier către comanda aferentă programului.
+> Redirectarea fișierului ```payload``` către program se face folosind o comandă precum:
+> ```bash
+> ./read_stdin_fgets < payload
+> ```
+
+> **IMPORTANT**
+>  Nu modificați codul în limbaj de asamblare. Transmiteți șirul de intrare în format corespunzător la intrarea standard
+> pentru a genera un buffer overflow și pentru a obține rezultatul cerut. 
