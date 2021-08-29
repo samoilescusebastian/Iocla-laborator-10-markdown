@@ -216,4 +216,20 @@ Pentru aceasta transmiteți șirul de intrare corespunzător pentru ca valoarea 
 
 > **TIP**
 > x86 este o arhitectură little endian. Adică șirul ```"FLOW"```, având corespondența caracter-cod ASCII
-> ```F```: ```0x46```, ```L```: ```0x4C```, ```O```: ```0x4F```, ```W```: ```0x57``` va fi stocat în memorie pe 4 octeți ca 0x574F4C46.
+> ```F```: ```0x46```, ```L```: ```0x4C```, ```O```: ```0x4F```, ```W```: ```0x57``` va fi stocat în memorie pe ```4``` octeți ca ```0x574F4C46```.
+> **Ce trebuie să faceți**: Va trebui ca, în cadrul buffer overflow-ului, să obțineți valoarea în memorie ```0x574F4C46```.
+> Obțineți șirul ASCII corespondent valorii în memorie ```0x574F4C46``` pe care trebuie să îl furnizați la intrarea standard a programului vulnerabil.
+
+> **TIP**
+> Ca să transmiteți șirul de intrare, e recomandat să-l scrieți într-un fișier și apoi să redirectați acel fișier către comanda aferentă programului.
+> Puteți folosi un editor precum ```gedit``` sau ```vim``` pentru editarea fișierului.
+> Avantajul acestora este că vă afișează și coloana pe care vă aflați și puteți să știți câte caractere ați scris în fișier.
+> Alternativ, puteți folosi python pentru a vă genera mai ușor payload-ul.
+> De exemplu, pentru a genera un payload care să suprascrie o valoare în cod cu valoarea ```0xDEADBEEF```, puteți executa următoarea comandă:
+> ```python
+> python -c 'print "A"*32 + "\xEF\xBE\xAD\xDE"' > payload
+> ```
+> E recomandat să numiți fișierul ```payload```. Redirectarea fișierului ```payload``` către program se face folosind o comandă precum:
+> ```bash
+> ./read_stdin < payload
+> ```
