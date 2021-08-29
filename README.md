@@ -74,4 +74,11 @@ Aceste verificări se realizează prin introducerea unor valori speciale, numite
 și valoarea canary și înainte de a se părăsi apelul funcției curente se va verifica dacă acea valoare a fost modificată sau nu.
 Dacă a fost modificată înseamnă că a avut loc un buffer overflow și execuția programului va fi întreruptă.
 Acest mecanism se numește **Stack Smashing Protection** sau **Stack Guard**. Mai multe detalii despre Stack Guard,
-dar și despre atacuri de tip buffer overflow puteți găsi [aici](https://en.wikipedia.org/wiki/Buffer_overflow). 
+dar și despre atacuri de tip buffer overflow puteți găsi [aici](https://en.wikipedia.org/wiki/Buffer_overflow).
+
+## Pregătire infrastructură
+
+> **IMPORTANT:** În cadrul laboratoarelor vom folosi repository-ul de git al materiei IOCLA - https://github.com/systems-cs-pub-ro/iocla.
+Repository-ul este clonat pe desktop-ul mașinii virtuale. Pentru a îl actualiza, folosiți comanda git pull origin master din
+interiorul directorului în care se află repository-ul (~/Desktop/iocla). Recomandarea este să îl actualizați cât mai frecvent,
+înainte să începeți lucrul, pentru a vă asigura că aveți versiunea cea mai recentă. 
