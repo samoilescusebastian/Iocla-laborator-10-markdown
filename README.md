@@ -210,6 +210,7 @@ Pentru aceasta transmiteți șirul de intrare corespunzător pentru ca valoarea 
 > Transmiteți șirul de intrare în format corespunzător la intrarea standard pentru a genera un buffer overflow și pentru a obține rezultatul cerut. 
 
 > **WARNING**
+>
 > Nu scrieți șirul ```"574F4C46"```. Acesta e un șir care ocupă ```8``` octeți.
 >
 > Trebuie să scrieți reprezentarea ASCII a numărului ```0x574F4C46``` adică ```FLOW```: 
