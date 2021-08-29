@@ -5,6 +5,6 @@ dar și vulnerabilitățile pe care acestea le au și cum pot ele să fie exploa
 cu scopul de a ataca un sistem sau de a obține informații la care în mod normal nu ar avea acces.
 
 Obiective:
-    - Prezentarea conceptelor de buffer și buffer overflow
-    - Exemple de atacuri de tip buffer overflow
-    - Prezentarea unor modalități de securizare a programelor pentru evitarea atacurilor de tip buffer overflow
+  - Prezentarea conceptelor de buffer și buffer overflow
+  - Exemple de atacuri de tip buffer overflow
+  - Prezentarea unor modalități de securizare a programelor pentru evitarea atacurilor de tip buffer overflow
