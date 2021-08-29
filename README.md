@@ -101,5 +101,5 @@ pentru a compila în mod automat fișierele cod sursă limbaj de asamblare sau C
 
 Înainte de a începe laboratorul, alocați-vă 1-2 minute să reparcurgeți diagrama de mai jos ce arată structura stivei în cazul unui apel de funcție.
 
-![alt text](https://ocw.cs.pub.ro/courses/_detail/iocla/laboratoare/stack-in-function-call.png?id=iocla%3Alaboratoare%3Alaborator-10 "Stack in function call")
+![alt text](https://ocw.cs.pub.ro/courses/_detail/iocla/laboratoare/stack-in-function-call.png "Stack in function call")
 
