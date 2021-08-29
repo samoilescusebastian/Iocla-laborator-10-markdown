@@ -79,14 +79,14 @@ dar și despre atacuri de tip buffer overflow puteți găsi [aici](https://en.wi
 ## Pregătire infrastructură
 
 > **IMPORTANT:** 
->În cadrul laboratoarelor vom folosi repository-ul de git al materiei IOCLA - https://github.com/systems-cs-pub-ro/iocla.
->Repository-ul este clonat pe desktop-ul mașinii virtuale. Pentru a îl actualiza, folosiți comanda git pull origin master din
->interiorul directorului în care se află repository-ul (~/Desktop/iocla). Recomandarea este să îl actualizați cât mai frecvent,
->înainte să începeți lucrul, pentru a vă asigura că aveți versiunea cea mai recentă.
+> În cadrul laboratoarelor vom folosi repository-ul de git al materiei IOCLA - https://github.com/systems-cs-pub-ro/iocla.
+> Repository-ul este clonat pe desktop-ul mașinii virtuale. Pentru a îl actualiza, folosiți comanda git pull origin master din
+> interiorul directorului în care se află repository-ul (~/Desktop/iocla). Recomandarea este să îl actualizați cât mai frecvent,
+> înainte să începeți lucrul, pentru a vă asigura că aveți versiunea cea mai recentă.
 
->Dacă doriți să descărcați repository-ul în altă locație, folosiți comanda git clone https://github.com/systems-cs-pub-ro/iocla ${target}. 
+> Dacă doriți să descărcați repository-ul în altă locație, folosiți comanda git clone https://github.com/systems-cs-pub-ro/iocla ${target}. 
 
->Pentru mai multe informații despre folosirea utilitarului git, urmați ghidul de la [Git Immersion](https://gitimmersion.com/).
+> Pentru mai multe informații despre folosirea utilitarului git, urmați ghidul de la [Git Immersion](https://gitimmersion.com/).
 
 Pentru desfășurarea acestui laborator vom folosi interfața în linia de comandă.
 
@@ -124,4 +124,39 @@ Rulați programul prin intermediul fișierului executabil, adică folosind coman
 Observați comportamentul programului în funcție de codul său.
 
 
-### 2. Tutorial: Folosirea unui buffer pe stivă
+## 2. Tutorial: Folosirea unui buffer pe stivă
+
+Accesați directorul ```2-3-4-stack-buffer/``` din arhiva de resurse a laboratorului și consultați fișierul ```stack_buffer.asm```.
+În acest fișier se găsește un program care populează un buffer cu informații și apoi le afișează.
+Este similar celui de mai sus doar că acum buffer-ul este alocat pe stivă.
+
+Consultați cu atenție programul, apoi compilați-l folosind comanda:
+
+```make```
+
+apoi rulați-l folosind comanda:
+
+```./stack_buffer```
+
+Observați comportamentul programului în funcție de codul său.
+
+Pe lângă buffer am mai alocat o variabilă locală pe 4 octeți, accesibilă la adresa ```ebp-4```.
+Este inițializată la valoarea ```0xCAFEBABE```. Această variabilă va fi importantă mai târziu.
+Ce este relevant acum este să știm că această variabilă este în memorie **imediat după buffer**: când se trece de limita buffer-ului se ajunge la această variabilă.
+
+Care este diferenta intre cele 2 programe inspectate pana acum?
+
+## 3. Citirea de date dincolo de dimensiunea buffer-ului
+
+Acum că am văzut cum arată buffer-ul în memorie și unde este plasată variabila,
+actualizați programul ```stack_buffer.asm``` pentru ca secvența de afișare a buffer-ului
+(cea din jurul etichetei ```print_byte```) să ducă și la afișarea octeților variabilei.
+Adică trebuie să citiți date dincolo de dimensiunea buffer-ului (și să le afișați).
+Este un caz de buffer overflow de citire, cu obiectiv de **information leak**: aflarea de informații din memorie.
+
+> **TIP**
+> Nu e ceva complicat, trebuie doar să "instruiți" secvența de afișare să folosească altă limită pentru afișare,
+> nu limita curentă de 64 de octeți.
+
+Afișați și alte informații dincolo chiar de variabila locală.
+Ce informație vine pe stivă după variabila locală (următorii 4 octeți)? Dar următorii 4 octeți după?
