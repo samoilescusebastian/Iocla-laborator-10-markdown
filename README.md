@@ -32,3 +32,4 @@ Un exemplu clasic de buffer overflow este dat de următorul cod:
 char buffer[32];
 fgets(buffer, 64, stdin);
 ```
+ În urma execuției acestui cod vom obține un buffer overflow care ar putea conduce chiar la o eroare de tip Segmentation Fault, însă acest lucru nu este garantat. Totul depinde de poziția bufferului pe stivă și de ceea ce se va suprascrie prin cei 32 de octeți ce depășesc dimensiunea bufferului. Mai multe detalii despre ceea ce se va suprascrie, dar și modalitatea prin care se va face acest lucru veți descoperi în timpul rezolvării exercițiilor.
